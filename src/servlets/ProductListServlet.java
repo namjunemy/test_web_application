@@ -13,24 +13,24 @@ import java.io.IOException;
 
 @WebServlet("/product/list")
 public class ProductListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			ServletContext servletContext = this.getServletContext();
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    try {
+      ServletContext servletContext = this.getServletContext();
 
-			ProductDao productDao = (ProductDao) servletContext.getAttribute("productDao");
+      ProductDao productDao = (ProductDao) servletContext.getAttribute("productDao");
 
-			request.setAttribute("product", productDao.selectList());
-			response.setContentType("text/html; charset=UTF-8;");
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product/ProductList.jsp");
-			requestDispatcher.forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("error", e);
-			RequestDispatcher rd = request.getRequestDispatcher("/Error.jsp");
-			rd.forward(request, response);
-		}
-	}
+      request.setAttribute("product", productDao.selectList());
+      response.setContentType("text/html; charset=UTF-8;");
+      RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product/ProductList.jsp");
+      requestDispatcher.forward(request, response);
+    } catch (Exception e) {
+      e.printStackTrace();
+      request.setAttribute("error", e);
+      RequestDispatcher rd = request.getRequestDispatcher("/Error.jsp");
+      rd.forward(request, response);
+    }
+  }
 }

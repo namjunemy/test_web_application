@@ -15,31 +15,31 @@ import java.io.IOException;
 
 @WebServlet("/auth/login")
 public class LogInServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/auth/LogInForm.jsp");
-		rd.forward(request, response);
-	}
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    RequestDispatcher rd = request.getRequestDispatcher("/auth/LogInForm.jsp");
+    rd.forward(request, response);
+  }
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			ServletContext sc = this.getServletContext();
-			MemberDao memberDao = (MemberDao) sc.getAttribute("memberDao");
-			Member member = memberDao.exist(request.getParameter("id"), request.getParameter("passwd"));
-			if (member != null) {
-				HttpSession session = request.getSession();
-				session.setAttribute("member", member);
-				response.sendRedirect("/product/list");
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    try {
+      ServletContext sc = this.getServletContext();
+      MemberDao memberDao = (MemberDao) sc.getAttribute("memberDao");
+      Member member = memberDao.exist(request.getParameter("id"), request.getParameter("passwd"));
+      if (member != null) {
+        HttpSession session = request.getSession();
+        session.setAttribute("member", member);
+        response.sendRedirect("/product/list");
 
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("/auth/LogInFail.jsp");
-				rd.forward(request, response);
-			}
-		} catch (Exception e) {
-			throw new ServletException(e);
-		}
-	}
+      } else {
+        RequestDispatcher rd = request.getRequestDispatcher("/auth/LogInFail.jsp");
+        rd.forward(request, response);
+      }
+    } catch (Exception e) {
+      throw new ServletException(e);
+    }
+  }
 }
