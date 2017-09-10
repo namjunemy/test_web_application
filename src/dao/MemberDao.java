@@ -57,12 +57,12 @@ public class MemberDao {
 			connection = dataSource.getConnection();
 			stmt = connection.createStatement();
 			rs = stmt.executeQuery(
-					"SELECT *" + " FROM member JOIN level" + " ON member.l_no = level.l_no and member.m_no = " + no);
+			    "SELECT *" + " FROM member JOIN level" + " ON member.l_no = level.l_no and member.m_no = " + no);
 
 			if (rs.next()) {
 				return new Member().setNo(rs.getInt("m_no")).setId(rs.getString("m_id")).setLevel(rs.getString("l_name"))
-						.setName(rs.getString("m_name")).setEmail(rs.getString("m_email")).setPhone(rs.getString("m_phone"))
-						.setRegist(simpleDateFormat.format(rs.getTimestamp("m_regist")));
+				    .setName(rs.getString("m_name")).setEmail(rs.getString("m_email")).setPhone(rs.getString("m_phone"))
+				    .setRegist(simpleDateFormat.format(rs.getTimestamp("m_regist")));
 			} else {
 				throw new Exception("해당 소방관을 찾을 수 없습니다.");
 			}
@@ -102,8 +102,8 @@ public class MemberDao {
 
 			while (rs.next()) {
 				values.add(new Member().setNo(rs.getInt("m_no")).setId(rs.getString("m_id")).setName(rs.getString("m_id"))
-						.setLevel(rs.getString("l_name")).setPasswd(rs.getString("m_passwd")).setEmail(rs.getString("m_email"))
-						.setPhone(rs.getString("m_phone")).setRegist(simpleDateFormat.format(rs.getTimestamp("m_regist"))));
+				    .setLevel(rs.getString("l_name")).setPasswd(rs.getString("m_passwd")).setEmail(rs.getString("m_email"))
+				    .setPhone(rs.getString("m_phone")).setRegist(simpleDateFormat.format(rs.getTimestamp("m_regist"))));
 			}
 			return values;
 		} catch (Exception e) {
@@ -141,7 +141,7 @@ public class MemberDao {
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				return new Member().setNo(Integer.parseInt(rs.getString("m_no"))).setId(rs.getString("m_id"))
-						.setPasswd(rs.getString("m_passwd"));
+				    .setPasswd(rs.getString("m_passwd"));
 			} else {
 				return null;
 			}
