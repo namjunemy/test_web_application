@@ -56,15 +56,14 @@ public class ReceiptDao {
 			connection = dataSource.getConnection();
 			stmt = connection.createStatement();
 			rs = stmt.executeQuery("SELECT r_no,r_date,m_id,m_name,p_name,p_size,p_price,p_description"
-					+ " FROM member JOIN receipt" + " ON member.m_no = receipt.m_no and member.m_no = " + no
-					+ " JOIN product" + " ON receipt.p_no = product.p_no;");
+					+ " FROM member JOIN receipt" + " ON member.m_no = receipt.m_no and member.m_no = " + no + " JOIN product"
+					+ " ON receipt.p_no = product.p_no;");
 
 			ArrayList<Receipt> values = new ArrayList<>();
 
 			while (rs.next()) {
-				values.add(new Receipt().setrNo(rs.getInt("r_no"))
-						.setrDate(simpleDateFormat.format(rs.getTimestamp("r_date"))).setmId(rs.getString("m_id"))
-						.setmName(rs.getString("m_name")).setpName(rs.getString("p_name"))
+				values.add(new Receipt().setrNo(rs.getInt("r_no")).setrDate(simpleDateFormat.format(rs.getTimestamp("r_date")))
+						.setmId(rs.getString("m_id")).setmName(rs.getString("m_name")).setpName(rs.getString("p_name"))
 						.setpSize(rs.getString("p_size")).setpPrice(rs.getInt("p_price"))
 						.setpDescription(rs.getString("p_description")));
 			}

@@ -11,8 +11,7 @@ import java.io.IOException;
 @WebServlet("/index")
 
 public class HomeServlet extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			response.setContentType("text/html; charset=UTF-8;");
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");

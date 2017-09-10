@@ -21,8 +21,6 @@ public class Product {
 		return this;
 	}
 
-	
-	
 	public Product setSize(String size) {
 		this.size = size;
 		return this;

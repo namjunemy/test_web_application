@@ -29,8 +29,8 @@ public class ProductDao {
 
 			while (rs.next()) {
 				values.add(new Product().setNo(rs.getInt("p_no")).setName(rs.getString("p_name"))
-						.setSize(rs.getString("p_size")).setPrice(rs.getInt("p_price"))
-						.setQuantity(rs.getInt("p_quantity")).setDescription(rs.getString("p_description")));
+						.setSize(rs.getString("p_size")).setPrice(rs.getInt("p_price")).setQuantity(rs.getInt("p_quantity"))
+						.setDescription(rs.getString("p_description")));
 			}
 			return values;
 		} catch (Exception e) {

@@ -17,8 +17,7 @@ public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			ServletContext sc = this.getServletContext();
 			MemberDao memberDao = (MemberDao) sc.getAttribute("memberDao");
@@ -39,16 +38,15 @@ public class MemberUpdateServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			ServletContext sc = this.getServletContext();
 			MemberDao memberDao = (MemberDao) sc.getAttribute("memberDao");
 
-			memberDao.update(new Member().setNo(Integer.parseInt(request.getParameter("m_no")))
-					.setId(request.getParameter("m_id")).setLevel(request.getParameter("l_name"))
-					.setName(request.getParameter("m_name")).setEmail(request.getParameter("m_email"))
-					.setPhone(request.getParameter("m_phone")));
+			memberDao
+					.update(new Member().setNo(Integer.parseInt(request.getParameter("m_no"))).setId(request.getParameter("m_id"))
+							.setLevel(request.getParameter("l_name")).setName(request.getParameter("m_name"))
+							.setEmail(request.getParameter("m_email")).setPhone(request.getParameter("m_phone")));
 
 			response.sendRedirect("/member/info?m_no=" + Integer.parseInt(request.getParameter("m_no")));
 
